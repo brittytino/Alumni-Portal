@@ -20,7 +20,7 @@ interface JobPostFormProps {
   existingJob?: JobPosting;
 }
 
-const JOB_TYPES = ["full-time", "part-time", "contract", "internship"] as const;
+const JOB_TYPES = ["full-time", "part-time", "internship"] as const;
 type JobType = typeof JOB_TYPES[number];
 
 const JobPostForm = ({ onClose, existingJob }: JobPostFormProps) => {
@@ -47,7 +47,7 @@ const JobPostForm = ({ onClose, existingJob }: JobPostFormProps) => {
       ...formData,
       date: new Date().toISOString(),
       skills: formData.skills.split(",").map((skill) => skill.trim()),
-      type: formData.type as "full-time" | "part-time" | "contract" | "internship",
+      type: formData.type as "full-time" | "part-time" | "internship",
     };
 
     const existingJobs = JSON.parse(localStorage.getItem("jobs") || "[]");
