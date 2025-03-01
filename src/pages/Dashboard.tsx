@@ -32,7 +32,7 @@ const Dashboard = () => {
           <div>
             <h1 className="text-2xl font-bold">Welcome back, {user.studentName}!</h1>
             <p className="text-gray-600">
-              Stay connected with your alma mater and fellow alumni
+              Stay connected with your alma mater and fellow alumni !
             </p>
           </div>
         </div>
