@@ -40,24 +40,24 @@ const features = [
 
 const successStories = [
   {
-    name: "Dr. Sarah Chen",
+    name: "Rohan Kumar",
     role: "Chief Technology Officer",
     company: "InnovateTech Solutions",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e",
+    image: "https://img.freepik.com/premium-photo/young-indian-college-boy-holding-backpack-books-giving-happy-expression_54391-7209.jpg",
     quote: "The alumni network played a crucial role in my career progression.",
   },
   {
-    name: "James Anderson",
+    name: "Janany Krishnan",
     role: "Founder & CEO",
     company: "Future Dynamics",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a",
+    image: "https://as2.ftcdn.net/jpg/06/22/43/91/1000_F_622439103_awYTqLhzL9PGpScksUGeyGey6ETiaqZI.jpg",
     quote: "The connections I made through the alumni network were invaluable.",
   },
   {
-    name: "Maria Rodriguez",
+    name: "Raagavi Srinivasan",
     role: "Research Director",
     company: "Global Research Institute",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2",
+    image: "https://img.freepik.com/premium-photo/young-indian-college-girl-holding-backpack-books-giving-happy-expression_54391-7225.jpg",
     quote: "The mentorship programs helped shape my research career.",
   },
 ];
@@ -95,7 +95,7 @@ const Index = () => {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1431576901776-e539bd916ba2"
+            src="https://www.vaave.com/blog/wp-content/uploads/2024/04/Marketing-Block-Image-5.png"
             alt="Campus"
             className="w-full h-full object-cover"
           />
