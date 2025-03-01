@@ -31,13 +31,13 @@ import {
   Phone,
   GraduationCap,
   Building,
+  Image,
 } from "lucide-react";
 import { format } from "date-fns";
 import { Event, News, User } from "@/types/user";
 import { events as initialEvents, news as initialNews, users as initialUsers } from "@/data/mockData";
 import { useToast } from "@/hooks/use-toast";
 
-// Form Components
 const EventForm = ({ event, onSubmit, onClose }: { event?: Event; onSubmit: (data: Event) => void; onClose: () => void }) => {
   const [formData, setFormData] = useState<Event>(
     event || {
@@ -49,6 +49,18 @@ const EventForm = ({ event, onSubmit, onClose }: { event?: Event; onSubmit: (dat
       image: "/placeholder.svg",
     }
   );
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string>(event?.image || "/placeholder.svg");
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      const imageUrl = URL.createObjectURL(file);
+      setPreviewUrl(imageUrl);
+      setFormData({ ...formData, image: imageUrl });
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,6 +103,26 @@ const EventForm = ({ event, onSubmit, onClose }: { event?: Event; onSubmit: (dat
           required
         />
       </div>
+      <div className="space-y-2">
+        <Label>Event Image</Label>
+        <div className="flex flex-col gap-4">
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="cursor-pointer"
+          />
+          {previewUrl && (
+            <div className="relative w-full h-48 rounded-lg overflow-hidden border border-gray-200">
+              <img
+                src={previewUrl}
+                alt="Event preview"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+        </div>
+      </div>
       <Button type="submit">{event ? "Update" : "Create"} Event</Button>
     </form>
   );
@@ -106,6 +138,18 @@ const NewsForm = ({ news, onSubmit, onClose }: { news?: News; onSubmit: (data: N
       image: "/placeholder.svg",
     }
   );
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string>(news?.image || "/placeholder.svg");
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      const imageUrl = URL.createObjectURL(file);
+      setPreviewUrl(imageUrl);
+      setFormData({ ...formData, image: imageUrl });
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,6 +173,7 @@ const NewsForm = ({ news, onSubmit, onClose }: { news?: News; onSubmit: (data: N
           value={formData.content}
           onChange={(e) => setFormData({ ...formData, content: e.target.value })}
           required
+          className="min-h-[100px]"
         />
       </div>
       <div>
@@ -139,6 +184,26 @@ const NewsForm = ({ news, onSubmit, onClose }: { news?: News; onSubmit: (data: N
           onChange={(e) => setFormData({ ...formData, date: e.target.value })}
           required
         />
+      </div>
+      <div className="space-y-2">
+        <Label>News Image</Label>
+        <div className="flex flex-col gap-4">
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="cursor-pointer"
+          />
+          {previewUrl && (
+            <div className="relative w-full h-48 rounded-lg overflow-hidden border border-gray-200">
+              <img
+                src={previewUrl}
+                alt="News preview"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+        </div>
       </div>
       <Button type="submit">{news ? "Update" : "Create"} News</Button>
     </form>
@@ -462,11 +527,22 @@ const AdminPanel = () => {
                   key={event.id}
                   className="flex items-center justify-between p-4 bg-muted rounded-lg"
                 >
-                  <div>
-                    <h3 className="font-semibold">{event.title}</h3>
-                    <p className="text-sm text-gray-500">
-                      {format(new Date(event.date), "MMMM d, yyyy")} at {event.location}
-                    </p>
+                  <div className="flex items-center gap-4">
+                    {event.image && (
+                      <div className="w-16 h-16 rounded overflow-hidden flex-shrink-0">
+                        <img 
+                          src={event.image} 
+                          alt={event.title} 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <h3 className="font-semibold">{event.title}</h3>
+                      <p className="text-sm text-gray-500">
+                        {format(new Date(event.date), "MMMM d, yyyy")} at {event.location}
+                      </p>
+                    </div>
                   </div>
                   <div className="flex gap-2">
                     <Button
@@ -524,11 +600,22 @@ const AdminPanel = () => {
                   key={item.id}
                   className="flex items-center justify-between p-4 bg-muted rounded-lg"
                 >
-                  <div>
-                    <h3 className="font-semibold">{item.title}</h3>
-                    <p className="text-sm text-gray-500">
-                      {format(new Date(item.date), "MMMM d, yyyy")}
-                    </p>
+                  <div className="flex items-center gap-4">
+                    {item.image && (
+                      <div className="w-16 h-16 rounded overflow-hidden flex-shrink-0">
+                        <img 
+                          src={item.image} 
+                          alt={item.title} 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <h3 className="font-semibold">{item.title}</h3>
+                      <p className="text-sm text-gray-500">
+                        {format(new Date(item.date), "MMMM d, yyyy")}
+                      </p>
+                    </div>
                   </div>
                   <div className="flex gap-2">
                     <Button

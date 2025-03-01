@@ -88,10 +88,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     );
     setUsers(updatedUsers);
     localStorage.setItem("users", JSON.stringify(updatedUsers));
+    
     if (user?.id === updatedUser.id) {
       setUser(updatedUser);
       localStorage.setItem("user", JSON.stringify(updatedUser));
     }
+    
+    // Trigger a storage event so other components can update
+    window.dispatchEvent(new Event("storage"));
+    
     toast({
       title: "Profile Updated",
       description: "Your profile has been successfully updated.",
