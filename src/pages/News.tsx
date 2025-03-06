@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar } from "lucide-react";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
-import { News as NewsType } from "@/types/user";
+import type { News as NewsType } from "@/types/user";
 import { news as initialNews } from "../data/mockData";
 
 const News = () => {
@@ -29,31 +29,38 @@ const News = () => {
     <div className="max-w-4xl mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-8 text-gray-800">Latest News</h1>
       <div className="grid gap-6">
-        {newsItems.map((item) => (
-          <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-            <div className="md:flex">
-              <div className="md:w-1/3">
-                <img
-                  src={item.image || "/placeholder.svg"}
-                  alt={item.title}
-                  className="h-60 w-full object-cover"
-                />
+        {newsItems.length > 0 ? (
+          newsItems.map((item) => (
+            <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+              <div className="md:flex">
+                <div className="md:w-1/3">
+                  <img
+                    src={item.image || "/placeholder.svg"}
+                    alt={item.title}
+                    className="h-60 w-full object-cover"
+                  />
+                </div>
+                <div className="md:w-2/3">
+                  <CardHeader>
+                    <CardTitle className="text-xl text-gray-800">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 mb-4 line-clamp-4">{item.content}</p>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Calendar className="h-4 w-4 mr-1" />
+                      {format(new Date(item.date), "MMMM d, yyyy")}
+                    </div>
+                  </CardContent>
+                </div>
               </div>
-              <div className="md:w-2/3">
-                <CardHeader>
-                  <CardTitle className="text-xl text-gray-800">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 mb-4 line-clamp-4">{item.content}</p>
-                  <div className="flex items-center text-sm text-gray-500">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    {format(new Date(item.date), "MMMM d, yyyy")}
-                  </div>
-                </CardContent>
-              </div>
-            </div>
-          </Card>
-        ))}
+            </Card>
+          ))
+        ) : (
+          <div className="text-center py-12 bg-gray-50 rounded-lg">
+            <h3 className="text-lg font-medium text-gray-600">No news articles</h3>
+            <p className="text-gray-500 mt-2">Check back later for new updates.</p>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import {
@@ -34,7 +33,7 @@ import {
   Image,
 } from "lucide-react";
 import { format } from "date-fns";
-import { Event, News, User } from "@/types/user";
+import type { Event, News, User } from "@/types/user";
 import { events as initialEvents, news as initialNews, users as initialUsers } from "@/data/mockData";
 import { useToast } from "@/hooks/use-toast";
 
@@ -311,10 +310,12 @@ const AdminPanel = () => {
 
   useEffect(() => {
     localStorage.setItem("events", JSON.stringify(events));
+    window.dispatchEvent(new Event("storage"));
   }, [events]);
 
   useEffect(() => {
     localStorage.setItem("news", JSON.stringify(news));
+    window.dispatchEvent(new Event("storage"));
   }, [news]);
 
   useEffect(() => {

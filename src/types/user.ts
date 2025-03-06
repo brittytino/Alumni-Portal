@@ -70,7 +70,7 @@ export interface JobPosting {
   title: string;
   description: string;
   location: string;
-  type: 'full-time' | 'part-time' | 'internship';
+  type: 'full-time' | 'part-time' | 'contract' | 'internship';
   date: string;
   skills: string[];
   experience: string;

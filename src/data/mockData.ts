@@ -111,7 +111,7 @@ export const events: Event[] = [
     description: "Join us for our annual alumni gathering with networking opportunities and guest speakers.",
     date: "2024-05-15",
     location: "RVS College Main Auditorium",
-    image: "https://lmcollege.wordpress.com/wp-content/uploads/2021/01/sonali-12333.jpg",
+    image: "/placeholder.svg",
   },
   {
     id: "2",
@@ -119,7 +119,7 @@ export const events: Event[] = [
     description: "Connect with potential employers and fellow alumni in tech industry.",
     date: "2024-06-20",
     location: "RVS College Campus",
-    image: "https://static.vecteezy.com/system/resources/previews/008/149/277/non_2x/career-fair-hanging-sign-human-resource-management-concept-for-flyers-banners-presentations-and-posters-vector.jpg",
+    image: "/placeholder.svg",
   },
 ];
 
@@ -129,13 +129,13 @@ export const news: News[] = [
     title: "New Computer Lab Inauguration",
     content: "RVS College proudly announces the inauguration of our state-of-the-art computer lab.",
     date: "2024-03-01",
-    image: "https://i.ytimg.com/vi/Ijj7fWoM0Po/maxresdefault.jpg",
+    image: "/placeholder.svg",
   },
   {
     id: "2",
     title: "Alumni Achievement Award",
     content: "Congratulations to our alumni who received recognition in the tech industry.",
     date: "2024-02-15",
-    image: "https://alumni.usask.ca/images/achievement-awards-/aaa-web-banner_new-photo-web.jpg",
+    image: "/placeholder.svg",
   },
 ];

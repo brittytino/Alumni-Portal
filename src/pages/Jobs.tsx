@@ -51,7 +51,7 @@ const Jobs = () => {
     return matchesSearch && matchesType;
   });
 
-  const jobTypes = ["full-time", "part-time", "internship"];
+  const jobTypes = ["full-time", "part-time", "contract", "internship"];
 
   const canManageJob = (jobUserId: string) => {
     return user?.isAdmin || user?.id === jobUserId;
